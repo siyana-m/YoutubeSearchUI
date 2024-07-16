@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/6.3.0/css/all.min.css" integrity="sha512-
+SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjS
+oQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            <div class="d-flex justify-content-center">
+
+                <h1>
+                    <a asp-page="Index">
+                        <i class="fa-brands fa-youtube"></i>
+                        YouTube Search
+                    </a>
+                </h1>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <div class="w-50">
+                    <input asp-for="SearchTerm" type="text" class="form-control" placeholder="Въведете някакъв текст...">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i> Търси
+                    </button>
+                </div>
+            </div>
+        </form>
+        @if (Model.Videos != null && Model.Videos.Count > 0)
+        {
+            <div class="row mt-3">
+                @foreach (var video in Model.Videos)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <a href="https://www.youtube.com/watch?v=@video.Id.VideoId" target="_blank">
+                                <img src="@video.Snippet.Thumbnails.Medium.Url" class="card-img-top"
+                                     alt="@video.Snippet.Title">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="https://www.youtube.com/watch?v=@video.Id.VideoId"
+                                       target="_blank">@video.Snippet.Title</a>
+                                </h5>
+                                <p class="cardtext">@video.Snippet.Description</p>
+                            </div>
+                            <div class="card-footer"><i class="fa-solid fatv"></i> @video.Snippet.ChannelTitle</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <div class="text-white text-center">
+                <h1><i class="fa-regular fa-face-sad-tear"></i></h1>
+                <p>Не бяха открити видеоклипове за "@Model.SearchTerm".</p>
+            </div>
+        }
+
+    </div>
+</body>
+</html>

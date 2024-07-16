@@ -1,0 +1,19 @@
+body {
+    background-image: url("https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?ixlib=rb4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop &w=2070&q=80"); background-size: cover;
+    background-position: center;
+    padding: 25px;
+}
+
+h1 a, h1 a:visited, h1 a:hover {
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    text-decoration: none;
+}
+
+.card {
+    box-shadow: 1px 1px 1px #000;
+}
+
+    .card:hover {
+        box-shadow: 1px 1px 8px #000;
+    }
